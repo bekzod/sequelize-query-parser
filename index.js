@@ -142,7 +142,7 @@ class SequelizeQS {
 
             // check the blacklist
             if (blacklist.some(el => el === key)) {
-                break;
+                continue;
             }
 
             // TODO: do we need to check for whitelist & let more dangerous query run?
@@ -156,7 +156,7 @@ class SequelizeQS {
                     ...customOperation
                 };
 
-                break;
+                continue;
             }
 
             // handle when no value is supplied (e.g. `?maxAge=`)
@@ -167,7 +167,7 @@ class SequelizeQS {
                     [key]: operation
                 };
 
-                break;
+                continue;
             }
 
             // handle when a NOT value is supplied (so when not null sort of a thing) (e.g. `?maxAge=!` or `?maxAge=!null`)
@@ -178,7 +178,7 @@ class SequelizeQS {
                     [key]: operation
                 };
 
-                break;
+                continue;
             }
 
             // check if we have an operator to handle a special type (not a basic `=` equals basically)
@@ -196,7 +196,7 @@ class SequelizeQS {
                     [key]: operation
                 };
 
-                break;
+                continue;
             }
 
             // finally, we will just default to the basic equals operation
